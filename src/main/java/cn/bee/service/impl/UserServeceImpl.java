@@ -1,6 +1,6 @@
 package cn.bee.service.impl;
 
-import cn.bee.domain.User;
+import cn.bee.User;
 import cn.bee.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
  * @author answer
  * 2018/2/5
  */
-@Service
+@Service(value = "userService")
 public class UserServeceImpl implements UserService {
     @Override
     public User findUserInfo() {
