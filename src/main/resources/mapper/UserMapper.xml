@@ -6,7 +6,7 @@
         (#{uuid},#{name},#{realName},#{password},now());
     </insert>
 
-    <select id="findUserByName" resultType="Map">
-        select * from user where username=#{name} limit 1
+    <select id="findUserByName" resultType="cn.bee.User">
+        select id,uuid,username as name,realname,password from user where username=#{name} limit 1
     </select>
 </mapper>

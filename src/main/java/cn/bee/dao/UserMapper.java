@@ -2,8 +2,6 @@ package cn.bee.dao;
 
 import cn.bee.User;
 
-import java.util.Map;
-
 /**
  * created by liufeng
  * 2018/9/11
@@ -23,5 +21,5 @@ public interface UserMapper {
      * @param name
      * @return
      */
-    Map findUserByName(String name);
+    User findUserByName(String name);
 }

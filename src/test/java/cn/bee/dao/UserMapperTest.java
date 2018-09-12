@@ -8,7 +8,6 @@ import org.junit.Test;
 import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -40,7 +39,7 @@ public class UserMapperTest extends BaseTest {
 
     @Test
     public void findUserByName() {
-        Map user = userMapper.findUserByName("admin");
+        User user = userMapper.findUserByName("admin");
         System.out.println(user);
     }
 }
