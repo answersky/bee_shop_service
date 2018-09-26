@@ -10,6 +10,9 @@
 
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/ProductMapper.xml"/>
+        <mapper resource="mapper/ProductPicMapper.xml"/>
+        <mapper resource="mapper/ProductAttributeMapper.xml"/>
     </mappers>
 
 </configuration>

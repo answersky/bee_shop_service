@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bee.dao.ProductPicMapper">
+
+    <insert id="save" useGeneratedKeys="true" parameterType="cn.bee.model.ProductPic" keyProperty="id">
+        insert into product_pic (main_url,pic1,pic2,pic3,pic4) VALUES
+        (#{mainUrl},#{pic1},#{pic2},#{pic3},#{pic4})
+    </insert>
+
+
+</mapper>

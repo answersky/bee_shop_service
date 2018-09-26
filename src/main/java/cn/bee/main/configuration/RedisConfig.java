@@ -51,7 +51,8 @@ public class RedisConfig extends CachingConfigurerSupport {
         JedisConnectionFactory factory = new JedisConnectionFactory();
         factory.setHostName(host);
         factory.setPort(port);
-        factory.setTimeout(timeout); //设置连接超时时间
+        //设置连接超时时间
+        factory.setTimeout(timeout);
         return factory;
     }
 
@@ -59,14 +60,16 @@ public class RedisConfig extends CachingConfigurerSupport {
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
         // Number of seconds before expiration. Defaults to unlimited (0)
-        cacheManager.setDefaultExpiration(10); //设置key-value超时时间
+        //设置key-value超时时间
+        cacheManager.setDefaultExpiration(10);
         return cacheManager;
     }
 
     @Bean
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
-        setSerializer(template); //设置序列化工具，这样ReportBean不需要实现Serializable接口
+        //设置序列化工具，这样ReportBean不需要实现Serializable接口
+        setSerializer(template);
         template.afterPropertiesSet();
         return template;
     }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bee.dao.ProductMapper">
+
+    <resultMap id="productMap" type="cn.bee.model.Product">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="productCode" column="product_code" jdbcType="VARCHAR"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="productType" column="product_type" jdbcType="VARCHAR"/>
+        <result property="picId" column="pic_id" jdbcType="INTEGER"/>
+        <result property="price" column="price" jdbcType="DECIMAL"/>
+        <result property="inventory" column="inventory" jdbcType="VARCHAR"/>
+        <result property="attributeId" column="attribute_id" jdbcType="INTEGER"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="operator" column="operator" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <association property="productPic" column="picId" javaType="cn.bee.model.ProductPic">
+            <id column="picId" property="id"/>
+            <result column="main_url" property="mainUrl"/>
+            <result column="pic1" property="pic1"/>
+            <result column="pic2" property="pic2"/>
+            <result column="pic3" property="pic3"/>
+            <result column="pic4" property="pic4"/>
+        </association>
+        <association property="productAttribute" column="attributeId" javaType="cn.bee.model.ProductAttribute">
+            <id column="attrId" property="id"/>
+            <result column="unit" property="unit"/>
+            <result column="length" property="length"/>
+            <result column="width" property="width"/>
+            <result column="height" property="height"/>
+            <result column="area" property="area"/>
+            <result column="weight" property="weight"/>
+            <result column="des" property="des"/>
+            <result column="producer" property="producer"/>
+            <result column="produce_time" property="produceTime"/>
+            <result column="expire_time" property="expireTime"/>
+            <result column="origin_place" property="originPlace"/>
+            <result column="create_time" property="createTime"/>
+            <result column="update_time" property="updateTime"/>
+        </association>
+    </resultMap>
+
+    <insert id="save">
+        insert into product (product_code,product_name,product_type,pic_id,price,inventory,
+        attribute_id,sort,operator,create_time) VALUES
+        (#{productCode},#{productName},#{productType},#{picId},#{price},#{inventory},#{attributeId},#{sort},#{operator},now())
+    </insert>
+
+    <select id="findProductByParam" resultMap="productMap">
+        select a.*,b.id as picId,main_url,pic1,pic2,pic3,pic4,c.id as attrId,
+        unit,length,width,height,area,weight,des,producer,produce_time,expire_time,
+        origin_place,c.create_time from product a
+        left join product_pic b on a.pic_id=b.id
+        left join product_attribute c on a.attribute_id=c.id
+        where 1=1
+        <if test="id!=null">
+            and a.id=#{id}
+        </if>
+        <if test="productCode!=null and productCode!=''">
+            and product_code=#{productCode}
+        </if>
+        <if test="productName!=null and productName!=''">
+            and product_name like CONCAT('',#{productName},'%')
+        </if>
+        order by a.create_time desc
+        limit 1000
+    </select>
+</mapper>
