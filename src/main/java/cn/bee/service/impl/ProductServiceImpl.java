@@ -55,11 +55,20 @@ public class ProductServiceImpl implements IProductService {
         Map<String, Object> result = new LinkedHashMap<>();
         List<Product> products = productMapper.findProductByParam(map);
         if (products != null && products.size() > 0) {
+            formatProduct(products);
             result.put("status", "success");
             result.put("data", products);
         } else {
             result.put("status", "fail");
         }
         return result;
+    }
+
+    private void formatProduct(List<Product> products) {
+        for (Product product : products) {
+            ProductPic productPic = product.getProductPic();
+            String mainUrl = productPic.getMainUrl();
+            product.setPic(mainUrl);
+        }
     }
 }
