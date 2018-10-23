@@ -7,5 +7,6 @@
     <dubbo:registry address="zookeeper://localhost:2181" check="false" subscribe="false"/>
     <dubbo:service interface="cn.bee.service.UserService" ref="userService"/>
     <dubbo:service interface="cn.bee.service.IProductService" ref="productService"/>
+    <dubbo:service interface="cn.bee.service.log.IProductOperateLogService" ref="productOperateLogService"/>
 
 </beans>

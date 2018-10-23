@@ -13,6 +13,7 @@
         <mapper resource="mapper/ProductMapper.xml"/>
         <mapper resource="mapper/ProductPicMapper.xml"/>
         <mapper resource="mapper/ProductAttributeMapper.xml"/>
+        <mapper resource="mapper/ProductOperateLogMapper.xml"/>
     </mappers>
 
 </configuration>

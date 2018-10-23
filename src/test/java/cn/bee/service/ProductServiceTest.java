@@ -45,10 +45,6 @@ public class ProductServiceTest extends BaseTest {
         productAttribute.setDes("北京方便面");
         productAttribute.setProducer("河南食品生产厂");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-        Date produceTime = sdf.parse("2018-06-01");
-        Date expireTime = sdf.parse("2019-06-01");
-        productAttribute.setProduceTime(produceTime);
-        productAttribute.setExpireTime(expireTime);
         productAttribute.setOriginPlace("河南");
         productAttribute.setUnit("包");
         product.setProductAttribute(productAttribute);

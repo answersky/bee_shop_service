@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bee.dao.ProductOperateLogMapper">
+    <insert id="save">
+        insert into product_operate_log (operator,product_code,remark,create_time) VALUES
+        (#{operator},#{productCode},#{remark},now());
+    </insert>
+
+    <select id="findLogs" resultType="cn.bee.model.ProductOperateLog">
+        select id,operator,product_code as productCode,remark,create_time as createTime
+        from product_operate_log where 1=1
+        <if test="sTime!=null">
+            and create_time >= #{sTime}
+        </if>
+        <if test="eTime!=null">
+            and create_time &lt;= #{eTime}
+        </if>
+        order by create_time desc limit 1000
+    </select>
+</mapper>
