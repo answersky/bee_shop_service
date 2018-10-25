@@ -1,6 +1,7 @@
 package cn.bee.dao;
 
 import cn.bee.model.Product;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -19,4 +20,14 @@ public interface ProductMapper {
      * @return
      */
     List<Product> findProductByParam(Map<String, Object> param);
+
+    /**
+     * 小程序查询商品列表
+     *
+     * @param type
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    List<Product> findWxProductList(@Param("type") String type, @Param("pageSize") int pageSize, @Param("pageNo") int pageNo);
 }

@@ -66,4 +66,17 @@
         order by a.create_time desc
         limit 1000
     </select>
+
+    <select id="findWxProductList" resultMap="productMap">
+        select a.*,b.id as picId,main_url,pic1,pic2,pic3,pic4,c.id as attrId,
+        unit,length,width,height,area,weight,des,producer,produce_time,expire_time,
+        origin_place,c.create_time from product a
+        left join product_pic b on a.pic_id=b.id
+        left join product_attribute c on a.attribute_id=c.id
+        where 1=1
+        <if test="type!=null and type!=''">
+            and product_type=#{type}
+        </if>
+        limit #{pageNo},#{pageSize}
+    </select>
 </mapper>
