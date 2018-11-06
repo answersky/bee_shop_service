@@ -79,4 +79,12 @@
         </if>
         limit #{pageNo},#{pageSize}
     </select>
+
+    <select id="findProductByProductCode" resultMap="productMap">
+        select * from product where product_code=#{productCode} for update
+    </select>
+
+    <update id="updateInventory">
+        update product set inventory=#{inventory} where id=#{id}
+    </update>
 </mapper>

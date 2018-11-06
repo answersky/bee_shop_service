@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bee.dao.order.OrderMapper">
+
+    <resultMap id="orderMap" type="cn.bee.model.Order">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="totalPrice" column="total_price" jdbcType="TIMESTAMP"/>
+        <result column="receive_address" property="receiveAddress"/>
+        <result column="receiver" property="receiver"/>
+        <result column="receive_phone" property="receivePhone"/>
+        <association property="orderDetail" column="orderDetailId" javaType="cn.bee.model.OrderDetail">
+            <id column="orderDetailId" property="id"/>
+            <result column="product_code" property="productCode"/>
+            <result column="num" property="num"/>
+            <result column="order_no" property="orderNo"/>
+        </association>
+    </resultMap>
+
+    <insert id="save">
+        insert into bee_order (order_no,username,create_time,total_price,receive_address,
+        receiver,receive_phone) VALUES
+        (#{orderNo},#{username},now(),#{totalPrice},#{receiveAddress},#{receiver},#{receivePhone})
+    </insert>
+
+</mapper>

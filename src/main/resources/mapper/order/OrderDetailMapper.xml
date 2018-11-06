@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bee.dao.order.OrderDetailMapper">
+
+    <insert id="batchSave">
+        insert into bee_order_detail (product_code,num,create_time,order_no) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.productCode},#{item.num},now(),#{item.orderNo})
+        </foreach>
+    </insert>
+
+</mapper>

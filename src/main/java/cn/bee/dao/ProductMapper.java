@@ -30,4 +30,20 @@ public interface ProductMapper {
      * @return
      */
     List<Product> findWxProductList(@Param("type") String type, @Param("pageSize") int pageSize, @Param("pageNo") int pageNo);
+
+    /**
+     * 根据商品编码查询商品信息
+     *
+     * @param productCode
+     * @return
+     */
+    Product findProductByProductCode(String productCode);
+
+    /**
+     * 更新库存
+     *
+     * @param inventory
+     * @param id
+     */
+    void updateInventory(@Param("inventory") Integer inventory, @Param("id") Integer id);
 }
